@@ -1,0 +1,48 @@
+version: 4.1.20
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Click on the "Login" button.
+    commands:
+      - command: hover-text
+        text: Login
+        description: login button in the header
+        action: click
+  - prompt: Enter test credentials.
+    commands:
+      - command: hover-text
+        text: Enter your email
+        description: email input field
+        action: click
+      - command: type
+        text: test@example.com
+      - command: hover-text
+        text: Enter your password
+        description: password input field
+        action: click
+      - command: type
+        text: password123
+      - command: assert
+        expect: Welcome back!
+  - prompt: >-
+      Assert that the user is logged in successfully or an error message is
+      shown for invalid credentials.  # Use the content of the file from the
+      environment
+    commands:
+      - command: wait-for-text
+        text: Welcome back!
+      - command: assert
+        expect: user is logged in successfully or an error message is shown
+  - prompt: >-
+      Assert that the user is logged in successfully or an error message is
+      shown for invalid credentials.  # Use the content of the file from the
+      environment
+    commands:
+      - command: hover-text
+        text: Login
+        description: login button
+        action: click
+      - command: wait-for-text
+        text: Welcome back! or Invalid credentials

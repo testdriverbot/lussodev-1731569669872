@@ -1,0 +1,28 @@
+version: 4.1.20
+steps:
+  - prompt: Focus the browser window.
+    commands:
+      - command: focus-application
+        name: Google Chrome
+  - prompt: Hover over the "Features" dropdown.
+    commands:
+      - command: hover-text
+        text: Features
+        description: dropdown menu in the header
+        action: hover
+      - command: hover-text
+        text: Features
+        description: dropdown menu in the header
+        action: click
+  - prompt: Select an option from the dropdown.
+    commands:
+      - command: hover-text
+        text: AI Products
+        description: option in the Features dropdown
+        action: click
+  - prompt: >-
+      Assert that the selected features page loads correctly.  # Use the content
+      of the file from the environment
+    commands:
+      - command: assert
+        expect: the text "LUSSO UNIVERSE" is visible on the page
